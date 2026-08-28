@@ -1,0 +1,1540 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    background: #000;
+}
+
+#game {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*
+ * =====================================================
+ * TELA INICIAL
+ * =====================================================
+ */
+
+#start-screen {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #FFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10000;
+}
+
+
+#start-button {
+    appearance: none;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #000;
+
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+
+    letter-spacing: 6px;
+
+    cursor: pointer;
+
+    padding: 20px 40px;
+
+    transition:
+        opacity 0.2s ease,
+        letter-spacing 0.2s ease;
+}
+
+
+#start-button:hover {
+    opacity: 0.65;
+    letter-spacing: 8px;
+}
+
+
+#start-button:active {
+    opacity: 0.4;
+}
+
+
+/*
+ * =====================================================
+ * CROSSHAIR
+ * =====================================================
+ */
+
+#crosshair {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: white;
+
+    font-size: 20px;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+
+/*
+ * =====================================================
+ * INSTRUCTIONS
+ * =====================================================
+ */
+
+#instructions {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: white;
+
+    text-align: center;
+
+    background:
+        rgba(0, 0, 0, 0.8);
+
+    padding: 20px 30px;
+
+    border: 1px solid #555;
+
+    z-index: 20;
+}
+
+
+/*
+ * =====================================================
+ * INTERACTION
+ * =====================================================
+ */
+
+#interaction {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: none;
+    align-items: center;
+    gap: 12px;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+
+    padding: 10px 20px;
+
+    z-index: 50;
+
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 25x;
+
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#interaction.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.interaction-text {
+    letter-spacing: 2px;
+}
+
+.interaction-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 28px;
+    height: 28px;
+
+    border: 1px solid white;
+
+    font-weight: 600;
+}
+
+
+/*
+ * =====================================================
+ * MODAL
+ * =====================================================
+ */
+
+#modal {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.72);
+
+    z-index: 100;
+
+    padding: 40px;
+
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+#modal.hidden {
+    display: none !important;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+#modal:not(.hidden) {
+    display: flex !important;
+}
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+#modal-page {
+
+    position: relative;
+
+    width: min(
+        1050px,
+        92vw
+    );
+
+    height: min(
+        700px,
+        88vh
+    );
+
+    padding: 55px 65px;
+
+    overflow: hidden;
+
+    color: #111;
+
+    background:
+
+        /* textura muito sutil */
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 0, 0, 0.025),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 0, 0, 0.018),
+            transparent 35%
+        ),
+
+        #f1f0e9;
+
+
+    border:
+
+        1px solid
+        rgba(0, 0, 0, 0.75);
+
+
+    box-shadow:
+
+        0 0 0 6px
+        rgba(241, 240, 233, 0.15),
+
+        0 30px 80px
+        rgba(0, 0, 0, 0.55);
+
+
+    font-family:
+        'IBM Plex Mono',
+        monospace;
+}
+
+
+/* =====================================================
+   INNER BORDER
+   ===================================================== */
+
+#modal-page::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+
+        1px solid
+        rgba(0, 0, 0, 0.25);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CLOSE
+   ===================================================== */
+
+#modal-close {
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #111;
+
+    font-family:
+        'IBM Plex Mono',
+        monospace;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+#modal-close:hover {
+
+    opacity: 0.55;
+
+    transform:
+        scale(1.1);
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 22px;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.modal-section-number {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    padding-top: 7px;
+
+    letter-spacing: 2px;
+}
+
+
+.modal-kicker {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.55;
+
+    margin-bottom: 8px;
+}
+
+
+#modal-title {
+
+    margin: 0;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   DIVIDER
+   ===================================================== */
+
+.modal-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    margin:
+
+        30px 0
+        42px;
+}
+
+
+/* =====================================================
+   ABOUT LAYOUT
+   ===================================================== */
+
+.modal-about {
+
+    display: grid;
+
+    grid-template-columns:
+        280px 1fr;
+
+    gap: 55px;
+
+    height: calc(
+        100% - 190px
+    );
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   PORTRAIT
+   ===================================================== */
+
+.modal-portrait {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.portrait-frame {
+
+    width: 260px;
+
+    height: 320px;
+
+    padding: 8px;
+
+    border:
+
+        1px solid
+        rgba(0, 0, 0, 0.7);
+
+    background: #e8e7df;
+
+    position: relative;
+}
+
+
+/*
+    Pequeno efeito de fotografia/documento.
+*/
+
+.portrait-frame::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 3px;
+
+    border:
+
+        1px solid
+        rgba(0, 0, 0, 0.25);
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.portrait-frame img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    image-rendering: pixelated;
+
+    filter:
+
+        grayscale(100%)
+        contrast(1.08);
+}
+
+
+.portrait-caption {
+
+    margin-top: 12px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.55;
+}
+
+
+/* =====================================================
+   TEXT
+   ===================================================== */
+
+.modal-text {
+
+    padding-top: 4px;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    max-width: 570px;
+}
+
+
+.modal-text p {
+
+    margin:
+
+        0 0 22px;
+}
+
+
+.modal-text strong {
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   INFORMATION LABELS
+   ===================================================== */
+
+.modal-text .profile-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px 35px;
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top:
+
+        1px solid
+        rgba(0, 0, 0, 0.35);
+}
+
+
+.modal-text .profile-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.modal-text .profile-label {
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.5;
+}
+
+
+.modal-text .profile-value {
+
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.modal-footer {
+
+    position: absolute;
+
+    left: 65px;
+    right: 65px;
+    bottom: 28px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.45;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    #modal {
+
+        padding: 15px;
+    }
+
+
+    #modal-page {
+
+        height: 92vh;
+
+        padding: 40px 30px;
+    }
+
+
+    .modal-about {
+
+        grid-template-columns: 1fr;
+
+        overflow-y: auto;
+
+        height: calc(
+            100% - 170px
+        );
+    }
+
+
+    .modal-portrait {
+
+        align-items: center;
+    }
+
+
+    .portrait-frame {
+
+        width: 200px;
+        height: 245px;
+    }
+
+
+    #modal-title {
+
+        font-size: 28px;
+    }
+
+
+    .modal-footer {
+
+        left: 30px;
+        right: 30px;
+    }
+}
+
+/*
+ * =====================================================
+ * EXPERIENCES
+ * =====================================================
+ */
+
+.experience-list {
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    padding-right: 25px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(0, 0, 0, 0.45)
+        transparent;
+}
+
+/* =====================================================
+   EXPERIENCES MODAL
+   ===================================================== */
+
+#modal.experience-modal .modal-about {
+
+    display: block;
+
+    height: calc(100% - 190px);
+
+    overflow: hidden;
+}
+
+
+#modal.experience-modal #modal-body {
+
+    width: 100%;
+
+    max-width: none;
+
+    height: 100%;
+
+    padding-top: 0;
+}
+
+
+#modal.experience-modal .modal-divider {
+
+    margin-bottom: 30px;
+}
+
+
+/*
+ * Chrome / Edge / Safari
+ */
+
+.experience-list::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+
+.experience-list::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+
+.experience-list::-webkit-scrollbar-thumb {
+
+    background: rgba(0, 0, 0, 0.45);
+
+    border-radius: 0;
+}
+
+
+/*
+ * =====================================================
+ * EXPERIENCE ITEM
+ * =====================================================
+ */
+
+.experience-item {
+
+    position: relative;
+
+    padding:
+
+        0
+        0
+        38px;
+
+    margin-bottom: 38px;
+
+    border-bottom:
+
+        1px solid
+        rgba(0, 0, 0, 0.35);
+}
+
+
+.experience-item:last-child {
+
+    margin-bottom: 0;
+
+    border-bottom: none;
+}
+
+
+/*
+ * =====================================================
+ * HEADER
+ * =====================================================
+ */
+
+.experience-header {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    gap: 30px;
+}
+
+
+.experience-item h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
+}
+
+
+.experience-company {
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: 0.55;
+}
+
+
+.experience-date {
+
+    flex-shrink: 0;
+
+    padding-top: 4px;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    opacity: 0.55;
+
+    white-space: nowrap;
+}
+
+
+/*
+ * =====================================================
+ * ROLE
+ * =====================================================
+ */
+
+.experience-role {
+
+    margin-top: 14px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+
+    opacity: 0.7;
+}
+
+
+/*
+ * =====================================================
+ * DESCRIPTION
+ * =====================================================
+ */
+
+.experience-item p {
+
+    margin:
+
+        18px
+        0
+        0;
+
+    max-width: 850px;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    opacity: 0.85;
+}
+
+
+/*
+ * =====================================================
+ * TECHNOLOGY TAGS
+ * =====================================================
+ */
+
+.experience-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+
+.experience-tags span {
+
+    display: inline-block;
+
+    padding:
+
+        5px
+        9px;
+
+    border:
+
+        1px solid
+        rgba(0, 0, 0, 0.4);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    background:
+
+        rgba(0, 0, 0, 0.025);
+}
+
+
+/*
+ * =====================================================
+ * EXPERIENCE MODAL BODY
+ * =====================================================
+ */
+
+#modal-page {
+
+    /*
+     * A área do conteúdo precisa permitir
+     * que a lista ocupe o espaço restante.
+     */
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+#modal-body {
+
+    min-height: 0;
+
+    flex: 1;
+
+    overflow: hidden;
+}
+
+
+/*
+ * =====================================================
+ * MOBILE
+ * =====================================================
+ */
+
+@media (max-width: 800px) {
+
+    .experience-header {
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .experience-date {
+
+        white-space: normal;
+    }
+
+
+    .experience-item h2 {
+
+        font-size: 17px;
+    }
+
+
+    .experience-item p {
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+}
+
+/* =====================================================
+   MODAL CONTENT VISIBILITY
+   ===================================================== */
+
+/*
+ * A foto existe no HTML porque é necessária
+ * para o ABOUT ME.
+ *
+ * Por padrão, ela fica escondida.
+ */
+
+#modal .modal-portrait {
+    display: none;
+}
+
+
+/*
+ * A foto só aparece no ABOUT ME.
+ */
+
+#modal.about-modal .modal-portrait {
+    display: flex;
+}
+
+
+/*
+ * ABOUT ME mantém o layout de duas colunas.
+ */
+
+#modal.about-modal .modal-about {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 55px;
+}
+
+
+/*
+ * Todos os outros modais ocupam
+ * a largura inteira.
+ */
+
+#modal.experience-modal .modal-about,
+#modal.skills-modal .modal-about,
+#modal.contact-modal .modal-about {
+
+    display: block;
+
+    height: calc(100% - 190px);
+
+    overflow: hidden;
+}
+
+
+/*
+ * O conteúdo também ocupa
+ * toda a largura disponível.
+ */
+
+#modal.experience-modal #modal-body,
+#modal.skills-modal #modal-body,
+#modal.contact-modal #modal-body {
+
+    width: 100%;
+
+    max-width: none;
+
+    height: 100%;
+
+    padding-top: 0;
+}
+
+/* =====================================================
+   SKILLS
+   ===================================================== */
+
+.skills-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    grid-template-rows:
+        repeat(2, 1fr);
+
+    gap: 30px 25px;
+
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+}
+
+
+/* =====================================================
+   SKILL ITEM
+   ===================================================== */
+
+.skill-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+
+    min-width: 0;
+
+    height: 120px;
+}
+
+
+/* =====================================================
+   ICON
+   ===================================================== */
+
+.skill-icon {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 10px;
+}
+
+
+.skill-icon img {
+
+    width: 75px;
+    height: 75px;
+
+    object-fit: contain;
+
+    display: block;
+
+    /*
+     * Preto e branco.
+     */
+
+    filter:
+        grayscale(100%)
+        contrast(1.15);
+}
+
+
+/* =====================================================
+   NAME
+   ===================================================== */
+
+.skill-name {
+
+    /*
+     * Altura fixa para todos os nomes.
+     *
+     * Assim o AEM, que ocupa duas linhas,
+     * não desloca os outros elementos.
+     */
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    max-width: 180px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    line-height: 1.4;
+
+    text-transform: uppercase;
+
+    margin-top: 10px
+}
+
+
+/* =====================================================
+   EXPERIENCE
+   ===================================================== */
+
+.skill-experience {
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.5;
+}
+
+
+/* =====================================================
+   BLACK & WHITE MODAL
+   ===================================================== */
+
+/*
+ * Aplica o filtro geral ao conteúdo dos modais.
+ */
+
+#modal-page {
+
+    filter:
+        grayscale(100%);
+}
+
+
+/*
+ * Mantém o botão de fechar nítido.
+ */
+
+#modal-close {
+
+    filter:
+        grayscale(100%);
+}
+
+
+/*
+ * Garante que os ícones também fiquem
+ * monocromáticos mesmo que sejam SVGs coloridos.
+ */
+
+#modal .skill-icon img {
+
+    filter:
+        grayscale(100%)
+        contrast(1.2);
+}
+
+/* =====================================================
+   CONTACT
+   ===================================================== */
+
+.contact-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+/* =====================================================
+   CONTACT ITEM
+   ===================================================== */
+
+.contact-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    height: 240px;
+
+    color: #111;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.contact-item:hover {
+
+    opacity: 0.6;
+
+    transform:
+        translateY(-5px);
+}
+
+
+/* =====================================================
+   ICON
+   ===================================================== */
+
+.contact-icon {
+
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+
+.contact-icon img {
+
+    width: 75px;
+    height: 75px;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        grayscale(100%)
+        contrast(1.2);
+}
+
+
+/* =====================================================
+   NAME
+   ===================================================== */
+
+.contact-name {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.contact-description {
+
+    margin-top: 9px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.5;
+}
+
+
+/* =====================================================
+   CONTACT MODAL
+   ===================================================== */
+
+#modal.contact-modal .modal-about {
+
+    display: block;
+
+    height: calc(100% - 190px);
+
+    overflow: hidden;
+}
+
+
+#modal.contact-modal #modal-body {
+
+    width: 100%;
+
+    max-width: none;
+
+    height: 100%;
+
+    padding-top: 0;
+}
+
+#modal.dog-photo-modal {
+    background: rgba(0, 0, 0, 0.85);
+
+    padding: 0;
+
+    overflow: visible;
+}
+
+
+#modal.dog-photo-modal #modal-page {
+
+    width: 92vw;
+
+    max-width: 1200px;
+
+    height: auto;
+
+    max-height: 95vh;
+
+    padding: 0;
+
+    border: none;
+
+    box-shadow: none;
+
+    background: transparent;
+
+    filter: none;
+
+    overflow: visible;
+}
+
+
+#modal.dog-photo-modal .modal-header,
+#modal.dog-photo-modal .modal-divider {
+
+    display: none;
+}
+
+
+#modal.dog-photo-modal .modal-about {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    overflow: visible;
+}
+
+
+#modal.dog-photo-modal #modal-body {
+
+    width: 100%;
+
+    height: auto;
+
+    max-width: none;
+
+    padding: 0;
+
+    overflow: visible;
+
+    flex: none;
+}
+
+
+.dog-photo-container {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: visible;
+}
+
+
+.dog-photo {
+
+    display: block;
+
+    width: auto;
+
+    max-width: 92vw;
+
+    max-height: 90vh;
+
+    object-fit: contain;
+}
