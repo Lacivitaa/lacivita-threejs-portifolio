@@ -57,25 +57,9 @@ export class SecretButton extends THREE.Group {
 
         );
 
-
-        /*
-         * =====================================================
-         * ÁUDIO DA PORTA
-         * =====================================================
-         *
-         * Coloque o arquivo em:
-         *
-         * /public/assets/audio/door-open.mp3
-         *
-         * Se estiver usando /assets/... normalmente,
-         * o caminho abaixo será:
-         *
-         * /assets/audio/door-open.mp3
-         */
-
         this.doorSound =
             new Audio(
-                '/assets/audio/door.mp3'
+                `${import.meta.env.BASE_URL}/assets/audio/door.mp3`
             );
 
         this.doorSound.preload =

@@ -94,12 +94,12 @@ export class App {
 
         this.welcomeSound =
             new Audio(
-                '/assets/audio/welcome.mp3'
+                 `${import.meta.env.BASE_URL}/assets/audio/welcome.mp3`
             );
 
         this.galleryMusic =
             new Audio(
-                '/assets/audio/gallery-loop.mp3'
+                `${import.meta.env.BASE_URL}/assets/audio/gallery-loop.mp3`
             );
 
 

@@ -89,7 +89,7 @@ export class Modal {
         const portrait =
             document.getElementById('about-portrait');
         if (portrait && painting.userData.title === 'ABOUT ME') {
-                portrait.src ='/assets/igor-pixel.png';
+                portrait.src = `${import.meta.env.BASE_URL}/assets/igor-pixel.png`;
         }
 
         this.element.classList.remove(
@@ -421,7 +421,7 @@ export class Modal {
             <div class="dog-photo-container">
 
                 <img
-                    src="/assets/family.png"
+                    src="${import.meta.env.BASE_URL}/assets/family.png"
                     alt="Family"
                     class="dog-photo"
                 />

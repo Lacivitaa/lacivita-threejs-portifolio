@@ -117,7 +117,7 @@ export class FloatingText extends THREE.Group {
 
         loader.load(
 
-            '/assets/fonts/Cinzel.json',
+             `${import.meta.env.BASE_URL}/assets/fonts/Cinzel.json`,
 
             (font) => {
 

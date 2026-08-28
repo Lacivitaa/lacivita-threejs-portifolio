@@ -128,7 +128,7 @@ export class Player {
 
         this.footstepAudio =
             new Audio(
-                '/assets/audio/footstep.mp3'
+                `${import.meta.env.BASE_URL}/assets/audio/footstep.mp3`
             );
 
         this.footstepAudio.volume =

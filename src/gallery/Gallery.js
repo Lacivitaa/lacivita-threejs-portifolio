@@ -1519,7 +1519,7 @@ export class Gallery {
 
             {
                 model:
-                    '/assets/sculptures/discobolus.glb',
+                    `${import.meta.env.BASE_URL}/assets/sculptures/discobolus.glb`,
 
                 position: {
                     x: -10,
@@ -1558,7 +1558,7 @@ export class Gallery {
 
             {
                 model:
-                    '/assets/sculptures/apollo.glb',
+                    `${import.meta.env.BASE_URL}/assets/sculptures/apollo.glb`,
 
                 position: {
                     x: -10,
@@ -1597,7 +1597,7 @@ export class Gallery {
 
             {
                 model:
-                    '/assets/sculptures/venus.glb',
+                    `${import.meta.env.BASE_URL}/assets/sculptures/venus.glb`,
 
                 position: {
                     x: 10,
@@ -1637,7 +1637,7 @@ export class Gallery {
 
             {
                 model:
-                    '/assets/sculptures/zeus.glb',
+                    `${import.meta.env.BASE_URL}/assets/sculptures/zeus.glb`,
 
                 position: {
                     x: 10,
