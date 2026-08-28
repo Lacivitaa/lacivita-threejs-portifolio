@@ -44,11 +44,15 @@ export class Player {
 
             left: false,
 
-            right: false
+            right: false,
+
+            shift: false
 
         };
 
-        this.speed = 30;
+        this.speed = 5;
+
+        this.runSpeed = 13;
 
 
         /*
@@ -587,6 +591,13 @@ export class Player {
 
                         break;
 
+                    case 'ShiftLeft':
+
+                        this.keys.shift =
+                            true;
+
+                        break;
+
                 }
 
             }
@@ -628,6 +639,13 @@ export class Player {
                     case 'KeyD':
 
                         this.keys.right =
+                            false;
+
+                        break;
+
+                    case 'ShiftLeft':
+
+                        this.keys.shift =
                             false;
 
                         break;
@@ -851,8 +869,13 @@ export class Player {
          * =====================================================
          */
 
+        const currentSpeed =
+            this.keys.shift
+                ? this.runSpeed
+                : this.speed;
+
         const speed =
-            this.speed *
+            currentSpeed *
             delta;
 
 
