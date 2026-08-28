@@ -1051,7 +1051,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/aem.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/aem.png"
                                 alt="Adobe Experience Manager"
                             />
                         </div>
@@ -1072,7 +1072,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/java.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/java.png"
                                 alt="Java"
                             />
                         </div>
@@ -1093,7 +1093,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/react.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/react.png"
                                 alt="React"
                             />
                         </div>
@@ -1114,7 +1114,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/angular.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/angular.png"
                                 alt="Angular"
                             />
                         </div>
@@ -1135,7 +1135,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/javascript.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/javascript.png"
                                 alt="JavaScript"
                             />
                         </div>
@@ -1156,7 +1156,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/typescript.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/typescript.png"
                                 alt="TypeScript"
                             />
                         </div>
@@ -1177,7 +1177,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/nodejs.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/nodejs.png"
                                 alt="Node.js"
                             />
                         </div>
@@ -1198,7 +1198,7 @@ export class Gallery {
 
                         <div class="skill-icon">
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/skills/git.png"
+                                src="${import.meta.env.BASE_URL}assets/skills/git.png"
                                 alt="Git"
                             />
                         </div>
@@ -1253,7 +1253,7 @@ export class Gallery {
                         <div class="contact-icon">
 
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/contact/linkedin.svg"
+                                src="${import.meta.env.BASE_URL}assets/contact/linkedin.svg"
                                 alt="LinkedIn"
                             />
 
@@ -1281,7 +1281,7 @@ export class Gallery {
                         <div class="contact-icon">
 
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/contact/github.svg"
+                                src="${import.meta.env.BASE_URL}assets/contact/github.svg"
                                 alt="GitHub"
                             />
 
@@ -1307,7 +1307,7 @@ export class Gallery {
                         <div class="contact-icon">
 
                             <img
-                                src="${import.meta.env.BASE_URL}/assets/contact/email.svg"
+                                src="${import.meta.env.BASE_URL}assets/contact/email.svg"
                                 alt="Email"
                             />
 
